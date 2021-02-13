@@ -1,0 +1,10 @@
+version: '2.0'
+
+services:
+  app:
+    image: meta:1.0
+    build:
+      context: meta
+    volumes:
+      - .:/app
+
