@@ -12,8 +12,28 @@ Installing it is a nightmare.  I couldn't get it to compile on Ubuntu versions 1
 It seems to work on Ubuntu version 16 (xenial),
 but even then I had to change where it gets its ICU files from.
 
-The following should build and run a Docker image with a fully compiled install of MeTA.
+The following should build a Docker image with a fully compiled install of MeTA.
 
 ```shell
-./run.sh
+docker build . meta:1.0
 ```
+
+## Coursera Text Retrieval and Search Engine assignment notes
+
+As per the instructions, download and extract `Assignment_1` into a directory somewhere.
+
+Assuming you are in the directory containing the `Assignment_1` directory,
+then you just need to do this:
+
+```shell
+docker run -t -i -v "$PWD"/Assignment_1:/home/metauser/Assignment_1  meta:1.0
+```
+
+If you `ls` you should see:
+
+```
+Assignment_1 meta
+```
+
+Note, that the `make -j8` will give compile errors, but you can ignore those for now.
+

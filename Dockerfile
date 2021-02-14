@@ -5,12 +5,14 @@ RUN apt update
 RUN apt-get update
 RUN apt-get install -y g++ git cmake make libjemalloc-dev zlib1g-dev
 
-RUN useradd -m meta
-USER meta
-WORKDIR /home/meta
+ENV META_USER=metauser
+
+RUN useradd -m $META_USER
+USER $META_USER
+WORKDIR /home/$META_USER
 
 RUN git clone https://github.com/meta-toolkit/meta.git
-WORKDIR /home/meta/meta
+WORKDIR /home/$META_USER/meta
 
 # Fix problem with icu file not matching md5:
 # See https://github.com/meta-toolkit/meta/pull/220/commits/6205e755519a5410b8083fe147cb4981d0935560
@@ -18,7 +20,7 @@ RUN sed -i 's/URL http:\/\/download.icu-project.org\/files\/icu4c\/58.2\/icu4c-5
 
 RUN git submodule update --init --recursive
 RUN mkdir build
-WORKDIR /home/meta/meta/build
+WORKDIR /home/$META_USER/meta/build
 
 RUN cp ../config.toml .
 RUN cmake ../ -DCMAKE_BUILD_TYPE=Release
@@ -26,4 +28,5 @@ RUN make
 
 # RUN ./unit-test --reporter=spec
 
+WORKDIR /home/$META_USER
 
