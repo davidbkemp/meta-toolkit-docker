@@ -35,5 +35,9 @@ If you `ls` you should see:
 Assignment_1 meta
 ```
 
-Note, that the `make -j8` will give compile errors, but you can ignore those for now.
+Then just continue following the assignment instructions.
+i.e. Change to he `Assignment_1` directory and run `./setup.sh`
+
+The build step fails with compile errors, but I have been able to run the stop word removal step.
+
 
